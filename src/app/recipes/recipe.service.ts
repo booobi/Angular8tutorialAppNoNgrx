@@ -18,7 +18,24 @@ export class RecipeService {
         [new Ingridient("Buns", 2), new Ingridient("Meat", 1)])
       ];
 
+    recipesChanged = new Subject<Recipe[]>();
+    
     constructor(private slService: ShoppingListService){}
+
+    addRecipe(recipe: Recipe) {
+        this.recipes.push(recipe);
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    updateRecipe(index: number, recipe: Recipe) {
+        this.recipes[index] = recipe;
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    deleteRecipe(index: number) {
+        this.recipes.splice(index, 1);
+        this.recipesChanged.next(this.recipes.slice());
+    }
 
     getRecipe(id: number) {
         return this.recipes[id];
