@@ -6,21 +6,22 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class RecipeService {
-    recipes: Recipe[] = [
-        new Recipe("Schznitzel with fries", 
-        "Best schnitzel EU", 
-        "https://cdn.pixabay.com/photo/2016/11/19/02/22/schnipo-1837703_960_720.jpg",
-        [new Ingridient("Meat", 1),new Ingridient("French Fries", 20)]),
+    // recipes: Recipe[] = [
+    //     new Recipe("Schznitzel with fries", 
+    //     "Best schnitzel EU", 
+    //     "https://cdn.pixabay.com/photo/2016/11/19/02/22/schnipo-1837703_960_720.jpg",
+    //     [new Ingridient("Meat", 1),new Ingridient("French Fries", 20)]),
         
-        new Recipe("Burger", 
-        "This is the tastiest burger", 
-        "https://live.staticflickr.com/1939/30724632707_aa69612b75_b.jpg",
-        [new Ingridient("Buns", 2), new Ingridient("Meat", 1)])
-      ];
-
+    //     new Recipe("Burger", 
+    //     "This is the tastiest burger", 
+    //     "https://live.staticflickr.com/1939/30724632707_aa69612b75_b.jpg",
+    //     [new Ingridient("Buns", 2), new Ingridient("Meat", 1)])
+    //   ];
+    recipes: Recipe[] = [];
     recipesChanged = new Subject<Recipe[]>();
     
-    constructor(private slService: ShoppingListService){}
+    constructor(private slService: ShoppingListService){
+    }
 
     addRecipe(recipe: Recipe) {
         this.recipes.push(recipe);
@@ -48,4 +49,9 @@ export class RecipeService {
     addIngridientsToShoppingList(ingridients: Ingridient[]) {
         this.slService.addIngridients(ingridients);
     }
+
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes;
+        this.recipesChanged.next(this.recipes.slice());
+    } 
 }
