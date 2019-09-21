@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
     declarations: [ShoppingEditComponent, ShoppingListComponent],
     imports: [ReactiveFormsModule, FormsModule, SharedModule, RouterModule.forChild([
-        { path: 'shopping-list', component: ShoppingListComponent }
+        { path: '', component: ShoppingListComponent }
     ])]
 })
 export class ShoppingListModule {
