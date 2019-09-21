@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 import { RecipesComponent } from './recipes.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
@@ -21,7 +20,6 @@ import { RecipesRoutingModule } from './recipes-routing,module';
         RecipeEditComponent
     ],
     imports: [
-        RouterModule,
         CommonModule, 
         ReactiveFormsModule, 
         RecipesRoutingModule
